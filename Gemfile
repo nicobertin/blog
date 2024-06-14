@@ -59,3 +59,6 @@ end
 
 # GoodJob for background jobs [https://github.com/bensheldon/good_job]
 gem "good_job", "~> 3.29"
+
+# Dotenv for environment variables [https://github.com/bkeepers/dotenv]
+gem 'dotenv', '~> 2.8', '>= 2.8.1'

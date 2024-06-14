@@ -24,13 +24,13 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", ">= 4.0.1"
+# gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem "dockerfile-rails", ">= 1.6"
 end
 
 group :development do
@@ -57,3 +58,16 @@ group :development do
   # gem "spring"
 end
 
+# GoodJob for background jobs [https://github.com/bensheldon/good_job]
+gem "good_job", "~> 3.29"
+
+# Dotenv for environment variables [https://github.com/bkeepers/dotenv]
+gem 'dotenv', '~> 2.8', '>= 2.8.1'
+
+# Sentry for error tracking
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
+
+# JWT for token-based authentication
+gem 'jwt', '~> 2.7', '>= 2.7.1'

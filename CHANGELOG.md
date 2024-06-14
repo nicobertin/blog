@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `routes.rb` to route root to `PagesController#home`.
 - `application_controller.rb` to include `JsonWebToken` module and handle JWTs.
 - `application.css` to include `google-icons` in the asset pipeline.
+- `application.html.erb` to include `_flash` and `_navbar` partials and `Bootstrap`CDN.
 
 ### Removed
 - `redis` gem as it is no longer needed for background jobs.

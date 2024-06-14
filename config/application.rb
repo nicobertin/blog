@@ -41,5 +41,8 @@ module Blog
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.active_job.queue_adapter = :good_job
+    config.action_view.preload_links_header = false
   end
 end

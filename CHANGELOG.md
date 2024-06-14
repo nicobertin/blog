@@ -8,16 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Add `good_job` gem to manage background jobs (c3144bd8)
-- Database migration to support `good_job (c3144bd8)
-- Configured GoodJob initializer with custom settings (c3144bd8)
-- Add `dotenv` gem to manage environment variables
+- `good_job` gem to manage background jobs.
+- `dotenv` gem to manage environment variables.
+- `good_job.rb` initializer with custom settings.
+- `PagesController` with `home` action and view.
 
 ### Changed
-- Updated `cable.yml` to use `async` adapter for `production`, `development`, and `test` environments instead of `redis` (c3144bd8)
-- Update `schema.rb` to include `good_jobs` tables (c3144bd8)
-- Update `application.rb` to include `dotenv` and load environment variables
+- `cable.yml` to use async adapter for all environments instead of redis.
+- `application.rb` to include `dotenv` and load environment variables.
+- `routes.rb` to route root to `PagesController#home`.
 
 ### Removed
-- Removed `redis` gem as it is no longer needed for background jobs (c3144bd8)
-- Removed `credentials.yml.enc` and `master.key` as they are no longer needed
+- `redis` gem as it is no longer needed for background jobs.
+- `credentials.yml.enc` and `master.key` as they are no longer needed.

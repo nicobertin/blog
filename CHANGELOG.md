@@ -8,9 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `fly.toml` for deployment to Fly.io.
 - `good_job` gem to manage background jobs.
 - `dotenv` gem to manage environment variables.
+- `stackprof`, `sentry-ruby` and `sentry-rails` gems for profiling and error tracking.
+- `dockerfile-rails` gem for building a Docker image.
 - `good_job.rb` initializer with custom settings.
+- `sentry.rb` initializer with custom settings.
 - `PagesController` with `home` action and view.
 
 ### Changed

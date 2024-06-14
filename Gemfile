@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem "dockerfile-rails", ">= 1.6"
 end
 
 group :development do
@@ -62,3 +63,9 @@ gem "good_job", "~> 3.29"
 
 # Dotenv for environment variables [https://github.com/bkeepers/dotenv]
 gem 'dotenv', '~> 2.8', '>= 2.8.1'
+
+
+# Sentry for error tracking
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"

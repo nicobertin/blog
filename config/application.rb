@@ -44,5 +44,7 @@ module Blog
 
     config.active_job.queue_adapter = :good_job
     config.action_view.preload_links_header = false
+
+    config.active_storage.variant_processor = :vips
   end
 end

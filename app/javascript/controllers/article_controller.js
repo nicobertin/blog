@@ -69,6 +69,8 @@ export default class extends Controller {
     if (navigator.share) {
       navigator.share({
         title: document.title,
+        image: document.querySelector('meta[property="og:image"]').getAttribute('content'),
+        description: document.querySelector('meta[property="og:description"]').getAttribute('content'),
         text: 'Echa un vistazo a este artículo:',
         url: window.location.href
       }).then(() => {

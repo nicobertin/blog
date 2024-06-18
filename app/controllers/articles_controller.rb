@@ -8,6 +8,16 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
+    set_meta_tags title: @article.title,
+                  description: @article.content.to_plain_text.truncate(300),
+                  keywords: @article.title,
+                  og: {
+                    title: "nicobertin.dev | " + @article.title,
+                    description: @article.content.to_plain_text.truncate(300),
+                    type: 'article',
+                    url: article_url(@article),
+                    image: @article.cover.attached? ? url_for(@article.cover) : nil
+                  }
   end
 
   # GET /articles/new

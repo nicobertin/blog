@@ -74,3 +74,6 @@ gem 'jwt', '~> 2.7', '>= 2.7.1'
 
 # AWS SDK for S3
 gem 'aws-sdk-s3', '~> 1.152', '>= 1.152.3'
+
+# Meta-tags for SEO
+gem 'meta-tags', '~> 2.21'

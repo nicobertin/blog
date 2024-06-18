@@ -1,0 +1,136 @@
+.d-flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 100%;
+}
+
+.cover-image {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin: 0 auto;
+    /* Centrar la imagen */
+}
+
+.cover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cover-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    /* Aplicar sombreado en el 50% inferior */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    border-radius: 20px;
+    /* Asegurar que el sombreado siga la curvatura de la imagen */
+}
+
+.cover-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1;
+    /* Asegurar que el título esté por encima del sombreado */
+}
+
+.cover-title h1 {
+    font-weight: 600;
+    margin: 0;
+    /* Eliminar margen para asegurar que el fondo cubra todo el título */
+}
+
+
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+}
+
+.sidebar {
+    height: 90vh;
+    overflow-y: auto;
+    padding: 10px 0;
+    /* Ajustar el padding para que se vea bien */
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    scrollbar-width: none;
+}
+
+.content-container {
+    padding: 20px;
+}
+
+#article-index ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#article-index ul li {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+#article-index ul li a {
+    text-decoration: none;
+    color: gray;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 20px;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+}
+
+#article-index ul li a:hover {
+    color: black;
+}
+
+@media (max-width: 1199px) {
+    .sidebar {
+        width: 30px;
+    }
+
+    .content-container {
+        max-width: calc(100% - 30px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+#article-index ul li a.active {
+    color: black;
+}

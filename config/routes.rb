@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :articles
-  root to: 'pages#home'
+  root to: 'articles#index'
   scope '/auth' do
     post 'login', to: 'authentication#login', as: 'login'
     delete 'logout', to: 'authentication#logout', as: 'logout'

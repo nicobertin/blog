@@ -59,15 +59,50 @@ pre strong {
 .trix-content {
   font-size: 20px;
   line-height: 1.8;
-  max-width: 700px;
   border: none !important;
   font-family: 'Noto Serif', serif;
 }
 
+.trix-content::first-letter {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .trix-button-group {
+  border: none !important;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+trix-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding-top: 10px;
+}
+.trix-button-row {
+  scrollbar-width: none !important;
+  justify-content: center !important;
+}
+.trix-button {
   border: none !important;
 }
 
-.trix-button {
-  border: none !important;
+.trix-button-group--history-tools {
+  display: none !important;
+}
+
+.trix-button--icon-decrease-nesting-level,
+.trix-button--icon-increase-nesting-level {
+  display: none !important;
+}
+
+.trix-content img {
+  border-radius: 20px;
+}
+
+.attachment__caption {
+  display: none;
 }

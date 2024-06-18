@@ -10,20 +10,86 @@
       </ul>
     </div>
   <% end %>
-
+  <div style="max-width: 700px; margin: auto;">
     <div class="d-md-flex justify-content-center">
       <div>
         <div>
-          <%= form.label :title, style: "display: block" %>
-          <%= form.text_field :title %>
+          <%= form.file_field :cover, id: 'cover-input', accept: 'image/jpeg,image/png,image/gif', onChange: 'validateCoverImage(event)', class: 'd-none cover-input' %>
+        </div>
+        <div class="my-3">
+          <label for="cover-input">
+            <% if article.cover.attached? %>
+              <%= image_tag article.cover, id: 'current-cover', class: 'avatar-preview' %>
+            <% else %>
+              <%= form.file_field :cover, id: 'cover-input', accept: 'image/jpeg,image/png,image/gif', onChange: 'validateCoverImage(event)' %>
+            <% end %>
+            <div id="cover-preview" class="preview"></div>
+          </label>
+        </div>
+        <div>
+          <%= form.text_field :title, class: "form-control mt-3", placeholder: "Título" %>
         </div>
         <div class="field mt-3">
           <%= form.rich_text_area :content %>
         </div>
       </div>
     </div>
-  
-  <div>
-    <%= form.submit %>
+
+    <div>
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>
+
+<script>
+  function validateCoverImage(event) {
+    const file = event.target.files[0];
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!validTypes.includes(file.type)) {
+      alert('Only JPEG, PNG o GIF.');
+      event.target.value = '';
+      return;
+    }
+    getCoverImagePreview(event);
+  }
+
+  function getCoverImagePreview(event) {
+    let image = URL.createObjectURL(event.target.files[0]);
+    let current_cover = document.getElementById('current-cover');
+    let coverPreviewDiv = document.getElementById('cover-preview');
+    let newimg = document.createElement('img');
+    newimg.classList.add('avatar-preview');
+    newimg.src = image;
+    coverPreviewDiv.innerHTML = '';
+    coverPreviewDiv.appendChild(newimg);
+    if (current_cover) current_cover.style.display = 'none';
+    let default_cover = document.getElementById('default-cover');
+    if (default_cover) default_cover.style.display = 'none';
+  }
+</script>
+
+<style>
+  .preview img,
+  .avatar-preview {
+    max-width: 100%;
+    height: 400px;
+    object-fit: cover;
+    position: relative;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .default-cover {
+    max-width: 100%;
+    height: 400px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+</style>

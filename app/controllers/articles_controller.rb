@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
-  before_action :authenticate!, except: %i[ index show ]
+  before_action :set_article, only: %i[ show edit update destroy like ]
+  before_action :authenticate!, except: %i[ index show like ]
   # GET /articles
   def index
     @articles = Article.all
@@ -43,6 +43,21 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy!
     redirect_to articles_url, notice: "Article was successfully destroyed.", status: :see_other
+  end
+
+  def like
+    @article.likes ||= 0
+    if cookies[@article.id.to_s] == 'liked'
+      @article.likes -= 1
+      cookies.delete(@article.id.to_s)
+    else
+      @article.likes += 1
+      cookies[@article.id.to_s] = 'liked'
+    end
+    @article.save
+    respond_to do |format|
+      format.html { redirect_to @article }
+    end
   end
 
   private

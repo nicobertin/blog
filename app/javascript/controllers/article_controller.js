@@ -64,4 +64,20 @@ export default class extends Controller {
       }
     })
   }
+
+  share(event) {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        text: 'Echa un vistazo a este artículo:',
+        url: window.location.href
+      }).then(() => {
+        console.log('¡Artículo compartido exitosamente!');
+      }).catch((error) => {
+        console.error('Error al compartir:', error);
+      });
+    } else {
+      alert('El API de Web Share no es soportado en este navegador.');
+    }
+  }
 }

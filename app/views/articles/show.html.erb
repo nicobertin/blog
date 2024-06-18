@@ -1,18 +1,32 @@
 <div id="<%= dom_id @article %>" class="d-flex" data-controller="article">
   <% if !@article.content.blank? %>
     <div class="content-wrapper">
-      <div class="cover-image">
+      <div class="cover-image position-relative overflow-visible">
         <%= image_tag @article.cover if @article.cover.attached? %>
         <div class="cover-title">
           <h1><%= @article.title %></h1>
+          <p class="text-white-50"><%= @article.created_at.strftime("%m-%Y") %> · Nicolas Bertin</p>
+        </div>
+        <div class="button-wrapper position-absolute">
+          <div class="like-button-wrapper">
+            <%= button_to like_article_path(@article), method: :post, remote: true, class: "like-button" do %>
+              <span class="material-symbols-rounded <%= 'liked' if cookies[@article.id.to_s] == 'liked' %>">favorite</span>
+            <% end %>
+          </div>
+          <div class="share-button-wrapper">
+            <button id="share-button" class="share-button" data-action="click->article#share">
+              <span class="material-symbols-rounded">share</span>
+            </button>
+          </div>
         </div>
       </div>
       <div class="d-md-flex justify-content-center">
-      <div class="main-content">
-        <div class="sidebar" id="article-index" data-article-target="index"></div>
-        <div class="content-container trix-content">
-          <div id="article-content" data-article-target="content">
-            <%= @article.content %>
+        <div class="main-content">
+          <div class="sidebar" id="article-index" data-article-target="index"></div>
+          <div class="content-container trix-content">
+            <div id="article-content" data-article-target="content">
+              <%= @article.content %>
+            </div>
           </div>
         </div>
       </div>

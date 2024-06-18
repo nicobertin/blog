@@ -1,5 +1,17 @@
-<div id="articles">
+<h1 class="text-center">Descubre</h1>
+<p class="text-center text-muted">Nuevos artículos</p>
+<div id="articles" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
   <% @articles.each do |article| %>
-  <%= link_to article.title, article_path(article), id: dom_id(article), class: "fs-1 fw-bold text-decoration-none text-dark" %>
+    <div class="col">
+      <%= link_to article_path(article), id: dom_id(article), class: "fs-1 fw-bold text-decoration-none text-dark" do %>
+        <div class="cover-image position-relative overflow-visible">
+          <%= image_tag article.cover if article.cover.attached? %>
+          <div class="cover-title">
+            <h1><%= article.title %></h1>
+            <p class="text-white-50 fs-6 fw-normal"><%= article.created_at.strftime("%m-%Y") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>

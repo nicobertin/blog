@@ -1,29 +1,18 @@
+<!-- app/views/articles/index.html.erb -->
 <h1 class="text-center">Descubre</h1>
 <p class="text-center text-muted">Nuevos artículos</p>
 
-<div class="category-container text-center my-4" data-controller="articles-index">
-  <div class="category-list">
-    <%= link_to "Todo", articles_path, id: "all-categories", class: "category-button #{'selected-category' unless params[:category_id]}", data: { turbo_frame: "articles", articles_index_target: "allCategoriesButton" } %>
-    <% Category.all.each do |category| %>
-      <%= link_to category.name, articles_path(category_id: category.id), class: "category-button #{'selected-category' if category.id.to_s == params[:category_id]}", data: { turbo_frame: "articles", articles_index_target: "categoryButton" } %>
-    <% end %>
+<%= turbo_frame_tag 'home' do %>
+  <div class="category-container text-center my-4" data-controller="articles-index">
+    <div class="category-list">
+      <%= link_to "Todo", articles_path, id: "all-categories", class: "category-button #{'selected-category' unless params[:category_id]}", data: { turbo_frame: "articles", articles_index_target: "allCategoriesButton" } %>
+      <% Category.all.each do |category| %>
+        <%= link_to category.name, articles_path(category_id: category.id), class: "category-button #{'selected-category' if category.id.to_s == params[:category_id]}", data: { turbo_frame: "articles", articles_index_target: "categoryButton" } %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<%= turbo_frame_tag "articles" do %>
-  <div id="articles" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-    <% @articles.each do |article| %>
-      <div class="col">
-        <%= link_to article_path(article), id: dom_id(article), class: "fs-1 fw-bold text-decoration-none text-dark" do %>
-          <div class="cover-image position-relative overflow-visible">
-            <%= image_tag article.cover if article.cover.attached? %>
-            <div class="cover-title">
-              <h1><%= article.title %></h1>
-              <p class="text-white-50 fs-6 fw-normal"><%= article.created_at.strftime("%m-%Y") %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag "articles" do %>
+    <%= render partial: "articles/articles_list", locals: { articles: @articles } %>
+  <% end %>
 <% end %>

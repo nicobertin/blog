@@ -5,26 +5,47 @@ export default class extends Controller {
   static targets = ["categoryButton", "allCategoriesButton"]
 
   connect() {
+    this.handleAllCategoriesClick = this.handleAllCategoriesClick.bind(this);
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+    
     this.categoryButtonTargets.forEach(button => {
-      button.addEventListener('click', this.handleCategoryClick.bind(this, button))
+      button.addEventListener('click', this.handleCategoryClick)
     })
-    this.allCategoriesButtonTarget.addEventListener('click', this.handleAllCategoriesClick.bind(this))
+    if (this.hasAllCategoriesButtonTarget) {
+      this.allCategoriesButtonTarget.addEventListener('click', this.handleAllCategoriesClick)
+    }
   }
 
-  handleCategoryClick(button, event) {
+  disconnect() {
+    this.categoryButtonTargets.forEach(button => {
+      button.removeEventListener('click', this.handleCategoryClick)
+    })
+    if (this.hasAllCategoriesButtonTarget) {
+      this.allCategoriesButtonTarget.removeEventListener('click', this.handleAllCategoriesClick)
+    }
+  }
+
+  handleCategoryClick(event) {
+    const button = event.currentTarget;
     if (button.classList.contains('selected-category')) {
       event.preventDefault()
       button.classList.remove('selected-category')
-      this.allCategoriesButtonTarget.click()
+      if (this.hasAllCategoriesButtonTarget) {
+        this.allCategoriesButtonTarget.click()
+      }
     } else {
       this.categoryButtonTargets.forEach(btn => btn.classList.remove('selected-category'))
-      this.allCategoriesButtonTarget.classList.remove('selected-category')
+      if (this.hasAllCategoriesButtonTarget) {
+        this.allCategoriesButtonTarget.classList.remove('selected-category')
+      }
       button.classList.add('selected-category')
     }
   }
 
   handleAllCategoriesClick() {
     this.categoryButtonTargets.forEach(btn => btn.classList.remove('selected-category'))
-    this.allCategoriesButtonTarget.classList.add('selected-category')
+    if (this.hasAllCategoriesButtonTarget) {
+      this.allCategoriesButtonTarget.classList.add('selected-category')
+    }
   }
 }

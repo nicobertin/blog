@@ -1,16 +1,14 @@
-
-
+<!-- app/views/articles/show.html.erb -->
 <div id="<%= dom_id @article %>" class="d-flex" data-controller="article">
   <% if !@article.content.blank? %>
     <div class="content-wrapper">
       <div class="cover-image position-relative overflow-visible">
         <%= image_tag @article.cover if @article.cover.attached? %>
         <div class="root-button-wrapper">
-  <%= link_to root_path, class: "root-button" do %>
-    <span class="material-symbols-rounded">home</span>
-  <% end %>
-</div>
-
+          <%= link_to root_path, class: "root-button" do %>
+            <span class="material-symbols-rounded">home</span>
+          <% end %>
+        </div>
         <div class="cover-title">
           <h1><%= @article.title %></h1>
           <p class="text-white-50"><%= @article.created_at.strftime("%m-%Y") %> · Nicolas Bertin</p>

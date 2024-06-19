@@ -30,6 +30,15 @@
           <%= form.text_field :title, class: "form-control mt-3", placeholder: "Título" %>
         </div>
         <div class="field mt-3">
+          <%= form.label :category_ids, "Categorías", class: "form-label" %>
+          <% Category.all.each do |category| %>
+            <div class="form-check">
+              <%= form.check_box :category_ids, { multiple: true, class: "form-check-input" }, category.id, nil %>
+              <%= form.label "category_ids_#{category.id}", category.name, class: "form-check-label" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="field mt-3">
           <%= form.rich_text_area :content %>
         </div>
       </div>

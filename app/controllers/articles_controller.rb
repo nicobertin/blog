@@ -1,9 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy like ]
   before_action :authenticate!, except: %i[ index show like ]
+  before_action :set_selected_category, only: :index
+
   # GET /articles
   def index
-    @articles = Article.all
+    if params[:category_id]
+      @articles = Article.joins(:categories).where(categories: { id: params[:category_id] }).order(created_at: :desc)
+    else
+      @articles = Article.all.order(created_at: :desc)
+    end
   end
 
   # GET /articles/1
@@ -78,6 +84,10 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :content, :cover)
+      params.require(:article).permit(:title, :content, :cover, category_ids: [])
+    end
+
+    def set_selected_category
+      @selected_category = params[:category_id]
     end
 end

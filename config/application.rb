@@ -46,5 +46,7 @@ module Blog
     config.action_view.preload_links_header = false
 
     config.active_storage.variant_processor = :vips
+
+    config.hosts << "nicobertin.dev"
   end
 end

@@ -46,6 +46,19 @@ export default class extends Controller {
     this.categoryButtonTargets.forEach(btn => btn.classList.remove('selected-category'))
     if (this.hasAllCategoriesButtonTarget) {
       this.allCategoriesButtonTarget.classList.add('selected-category')
+      this.scrollToButton(this.allCategoriesButtonTarget)
     }
+  }
+
+  scrollToButton(button) {
+    const container = button.closest('.category-container');
+    const buttonOffsetLeft = button.offsetLeft;
+    const containerWidth = container.clientWidth;
+    const scrollLeft = buttonOffsetLeft - (containerWidth / 2) + (button.clientWidth / 2);
+
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: 'smooth'
+    });
   }
 }

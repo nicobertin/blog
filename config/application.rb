@@ -47,6 +47,6 @@ module Blog
 
     config.active_storage.variant_processor = :vips
 
-    config.hosts << "nicobertin.dev"
+    config.hosts << ["nicobertin.dev", "www.nicobertin.dev", "nicobertin.fly.dev"]
   end
 end
